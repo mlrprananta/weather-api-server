@@ -1,10 +1,9 @@
 import { Application } from "./deps.ts";
-import { weatherRouter } from "./weather_controller.ts";
+import routes from "./routes.ts";
 
 const app = new Application();
 
-app.use(weatherRouter.routes());
-
+app.use(routes);
 app.addEventListener("listen", ({ hostname, port, secure }) => {
   console.log(
     `Listening on: ${secure ? "https://" : "http://"}${
