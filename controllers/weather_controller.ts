@@ -6,30 +6,31 @@ export class WeatherController {
 
   constructor(service: WeatherService) {
     this.#service = service;
+    this.getTemperatures.bind(this);
   }
 
   static #validateQueryParams(queryParams: Map<string, string>) {
-    if (!queryParams.has("lon") || !queryParams.has("lat")) {
+    if (!queryParams.has("lat") || !queryParams.has("lon")) {
       throw new Error("No coordinates provided.");
     }
-    const lon = queryParams.get("lon") as string;
-    const lat = queryParams.get("lat") as string;
-    if (isNaN(parseFloat(lon))) {
+    const lat = parseFloat(queryParams.get("lat") as string);
+    const lon = parseFloat(queryParams.get("lon") as string);
+    if (isNaN(lat)) {
       throw new Error("Coordinate must be a number.");
     }
-    if (isNaN(parseFloat(lat))) {
+    if (isNaN(lon)) {
       throw new Error("Coordinate must be a number.");
     }
   }
 
-  getTemperatures(ctx: Context) {
+  async getTemperatures(ctx: Context) {
     try {
       const queryParams: Map<string, string> = getQuery(ctx, { asMap: true });
       WeatherController.#validateQueryParams(queryParams);
-      ctx.response.body = {
-        lon: queryParams.get("lon"),
-        lat: queryParams.get("lat"),
-      };
+      const lat = parseFloat(queryParams.get("lat") as string);
+      const lon = parseFloat(queryParams.get("lon") as string);
+      const temperatures = await this.#service.getTemperatures(lat, lon);
+      ctx.response.body = temperatures;
     } catch (e) {
       const error = e as Error;
       console.error(error);

@@ -4,11 +4,12 @@ import { WeatherService } from "./services/weather_service.ts";
 
 const router: Router = new Router();
 
-const weatherService: WeatherService = new WeatherService();
-const weatherController: WeatherController = new WeatherController(
+const weatherService = new WeatherService();
+const weatherController = new WeatherController(
   weatherService,
 );
+router.get("/temperatures", (ctx) => {
+  return weatherController.getTemperatures(ctx);
+});
 
-router.get("/temperatures", weatherController.getTemperatures);
-
-export default router.routes();
+export default router;
