@@ -1,5 +1,5 @@
 import { GeolocationCache } from "../deps.ts";
-import { OpenWeatherClient } from "../open_weather_client.ts";
+import { IOpenWeatherClient } from "../open_weather_client.ts";
 
 interface TemperatureData {
   temperature: number;
@@ -7,13 +7,17 @@ interface TemperatureData {
   max: number;
 }
 
-export class WeatherService {
-  temperatureCache: GeolocationCache<TemperatureData>;
-  client: OpenWeatherClient;
+interface IWeatherService {
+  getTemperatures: (lat: number, lon: number) => Promise<TemperatureData>;
+}
 
-  constructor() {
+export class WeatherService implements IWeatherService {
+  temperatureCache: GeolocationCache<TemperatureData>;
+  client: IOpenWeatherClient;
+
+  constructor(client: IOpenWeatherClient) {
     this.temperatureCache = new GeolocationCache(2);
-    this.client = new OpenWeatherClient();
+    this.client = client;
   }
 
   async getTemperatures(lat: number, lon: number) {

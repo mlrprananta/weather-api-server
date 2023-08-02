@@ -4,7 +4,7 @@ interface WeatherOptions {
   units: "standard" | "metric" | "imperial";
 }
 
-interface WeatherResponse {
+export interface WeatherResponse {
   coord: {
     lon: number;
     lat: number;
@@ -59,7 +59,11 @@ interface WeatherResponse {
   cod: number;
 }
 
-export class OpenWeatherClient {
+export interface IOpenWeatherClient {
+  getCurrentWeather: (lat: number, lon: number) => Promise<WeatherResponse>;
+}
+
+export class OpenWeatherClient implements IOpenWeatherClient {
   readonly baseUrl = "https://api.openweathermap.org/data/2.5";
   #apiKey: string;
 
@@ -73,7 +77,7 @@ export class OpenWeatherClient {
     lat: number,
     lon: number,
     options: WeatherOptions = { units: "metric" },
-  ) : Promise<WeatherResponse> {
+  ): Promise<WeatherResponse> {
     const params = new URLSearchParams({
       lat: lat.toString(),
       lon: lon.toString(),
@@ -90,7 +94,7 @@ export class OpenWeatherClient {
     if (response.ok) {
       return await response.json();
     } else {
-      throw Error("Request failed.")
+      throw Error("Request failed.");
     }
   }
 }
