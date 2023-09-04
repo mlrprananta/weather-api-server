@@ -1,10 +1,10 @@
 import { Context, getQuery, Status } from "../deps.ts";
-import { WeatherService } from "../services/weather_service.ts";
+import { IWeatherService } from "../services/weather_service.ts";
 
 export class WeatherController {
-  #service: WeatherService;
+  #service: IWeatherService;
 
-  constructor(service: WeatherService) {
+  constructor(service: IWeatherService) {
     this.#service = service;
     this.getTemperatures.bind(this);
   }

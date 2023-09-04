@@ -10,6 +10,7 @@ const weatherService = new WeatherService(openWeatherClient);
 const weatherController = new WeatherController(
   weatherService,
 );
+
 router.get("/temperatures", (ctx) => {
   return weatherController.getTemperatures(ctx);
 });

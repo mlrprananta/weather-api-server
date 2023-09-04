@@ -7,7 +7,7 @@ interface TemperatureData {
   max: number;
 }
 
-interface IWeatherService {
+export interface IWeatherService {
   getTemperatures: (lat: number, lon: number) => Promise<TemperatureData>;
 }
 
@@ -21,6 +21,7 @@ export class WeatherService implements IWeatherService {
   }
 
   async getTemperatures(lat: number, lon: number) {
+    console.debug(`Temperature requested for: (${lat}, ${lon})`);
     const cached = this.temperatureCache.get(lat, lon);
     if (cached === undefined) {
       const weatherData = await this.client.getCurrentWeather(lat, lon);

@@ -1,15 +1,10 @@
-import { Application } from "./deps.ts";
+import { Application, oakCors } from "./deps.ts";
 import router from "./routes.ts";
 import "https://deno.land/std@0.196.0/dotenv/load.ts";
 
-// if (Deno.env.get("DENO_ENV") === "dev") {
-//   for (const key in env) {
-//     Deno.env.set(key, env[key]);
-//   }
-// }
-
 const app = new Application();
 
+app.use(oakCors());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
