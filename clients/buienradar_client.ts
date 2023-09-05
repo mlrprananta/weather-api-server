@@ -34,8 +34,8 @@ export class BuienradarClient implements IBuienradarClient {
 
   parseResponse(text: string): BuienradarResponse {
     return text.split("\n")
-    .filter(line => line !== "")
-    .map((line) => line.split("|"))
+      .filter((line) => line !== "")
+      .map((line) => line.split("|"))
       .map((tuple) => {
         return {
           intensity: Math.pow(10, (parseInt(tuple[0]) - 109) / 32),

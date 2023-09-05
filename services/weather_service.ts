@@ -1,6 +1,6 @@
-import { IBuienradarClient } from "../buienradar_client.ts";
+import { IBuienradarClient } from "../clients/buienradar_client.ts";
 import { GeolocationCache } from "../deps.ts";
-import { IOpenWeatherClient } from "../open_weather_client.ts";
+import { IOpenWeatherClient } from "../clients/open_weather_client.ts";
 
 interface TemperatureData {
   temperature: number;

@@ -1,5 +1,8 @@
-import { IBuienradarClient } from "../buienradar_client.ts";
-import { IOpenWeatherClient, WeatherResponse } from "../open_weather_client.ts";
+import { IBuienradarClient } from "../clients/buienradar_client.ts";
+import {
+  IOpenWeatherClient,
+  WeatherResponse,
+} from "../clients/open_weather_client.ts";
 import { WeatherService } from "./weather_service.ts";
 import { assertEquals } from "https://deno.land/std@0.196.0/assert/mod.ts";
 
