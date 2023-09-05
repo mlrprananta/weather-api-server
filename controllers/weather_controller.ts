@@ -25,10 +25,7 @@ export class WeatherController {
 
   async getTemperatures(ctx: Context) {
     try {
-      const queryParams: Map<string, string> = getQuery(ctx, { asMap: true });
-      WeatherController.#validateQueryParams(queryParams);
-      const lat = parseFloat(queryParams.get("lat") as string);
-      const lon = parseFloat(queryParams.get("lon") as string);
+      const { lat, lon } = this.#getCoordinates(ctx);
       const temperatures = await this.#service.getTemperatures(lat, lon);
       ctx.response.body = temperatures;
     } catch (e) {
@@ -37,5 +34,26 @@ export class WeatherController {
       ctx.response.status = Status.BadRequest;
       ctx.response.body = { message: error.message };
     }
+  }
+
+  async getWeather(ctx: Context) {
+    try {
+      const { lat, lon } = this.#getCoordinates(ctx);
+      const weather = await this.#service.getWeatherReport(lat, lon);
+      ctx.response.body = weather;
+    } catch (e) {
+      const error = e as Error;
+      console.error(error);
+      ctx.response.status = Status.BadRequest;
+      ctx.response.body = { message: error.message };
+    }
+  }
+
+  #getCoordinates(ctx: Context) {
+    const queryParams: Map<string, string> = getQuery(ctx, { asMap: true });
+    WeatherController.#validateQueryParams(queryParams);
+    const lat = parseFloat(queryParams.get("lat") as string);
+    const lon = parseFloat(queryParams.get("lon") as string);
+    return { lat, lon };
   }
 }

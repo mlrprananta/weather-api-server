@@ -152,6 +152,8 @@
     "https://deno.land/std@0.196.0/http/user_agent.ts": "35d3c70d0926b0e121b8c1bbc324b3522479158acaa4f0c43928362b7bf4e6f4",
     "https://deno.land/std@0.196.0/testing/asserts.ts": "b4e4b1359393aeff09e853e27901a982c685cb630df30426ed75496961931946",
     "https://deno.land/std@0.196.0/testing/mock.ts": "4c52b8312d159179fdd9d9a1b35e342ee4e1a1248f29e5c7f57fb4011c3f55ed",
+    "https://deno.land/std@0.201.0/dotenv/load.ts": "0636983549b98f29ab75c9a22a42d9723f0a389ece5498fe971e7bb2556a12e2",
+    "https://deno.land/std@0.201.0/dotenv/mod.ts": "1da8c6d0e7f7d8a5c2b19400b763bc11739df24acec235dda7ea2cfd3d300057",
     "https://deno.land/x/cors@v1.2.2/abcCors.ts": "cdf83a7eaa69a1bf3ab910d18b9422217902fac47601adcaf0afac5a61845d48",
     "https://deno.land/x/cors@v1.2.2/attainCors.ts": "7d6aba0f942495cc31119604e0895c9bb8edd8f8baa7fe78e6c655bd0b4cbf59",
     "https://deno.land/x/cors@v1.2.2/cors.ts": "0e2d9167e3685f9bcf48f565e312b6e1883fa458f7337e5ce7bc2e3b29767980",
