@@ -28,7 +28,7 @@ export class BuienradarClient implements IBuienradarClient {
       return response.text()
         .then((text) => this.parseResponse(text));
     } else {
-      throw Error(`Request failed: ${await response.text()}`);
+      throw Error(`Request to Buienradar failed: ${await response.text()}`);
     }
   }
 

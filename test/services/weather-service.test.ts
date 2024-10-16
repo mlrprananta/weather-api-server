@@ -1,10 +1,10 @@
-import { IBuienradarClient } from "../clients/buienradar_client.ts";
+import { IBuienradarClient } from "../../src/clients/buienradar-client.ts";
 import {
   IOpenWeatherClient,
   WeatherResponse,
-} from "../clients/open_weather_client.ts";
-import { WeatherService } from "./weather_service.ts";
-import { assertEquals } from "https://deno.land/std@0.196.0/assert/mod.ts";
+} from "../../src/clients/open-weather-client.ts";
+import { WeatherService } from "../../src/services/weather-service.ts";
+import { assertEquals } from "jsr:@std/assert";
 
 Deno.test({
   name: "test weather service get temperatures",

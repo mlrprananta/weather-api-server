@@ -1,4 +1,4 @@
-import { assert } from "https://deno.land/std@0.193.0/_util/asserts.ts";
+import { assert } from "jsr:@std/assert";
 
 interface WeatherOptions {
   units: "standard" | "metric" | "imperial";
@@ -69,7 +69,7 @@ export class OpenWeatherClient implements IOpenWeatherClient {
 
   constructor() {
     const apiKey = Deno.env.get("OPEN_WEATHER_API_KEY");
-    assert(apiKey !== undefined);
+    assert(apiKey !== undefined, "OpenWeather API key is required.");
     this.#apiKey = apiKey;
   }
 
@@ -94,7 +94,9 @@ export class OpenWeatherClient implements IOpenWeatherClient {
     if (response.ok) {
       return await response.json();
     } else {
-      throw Error("Request failed.");
+      throw Error(
+        `Request to OpenWeather failed: ${(await response.json()).message}`,
+      );
     }
   }
 }

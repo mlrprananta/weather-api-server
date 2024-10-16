@@ -1,6 +1,7 @@
-import { Application, oakCors } from "./deps.ts";
+import { Application } from "jsr:@oak/oak";
+import { oakCors } from "jsr:@tajpouria/cors";
+import "jsr:@std/dotenv/load";
 import router from "./routes.ts";
-import "https://deno.land/std@0.201.0/dotenv/load.ts";
 
 const app = new Application();
 
